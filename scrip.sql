@@ -5,7 +5,7 @@
 -- Dumped from database version 16.2
 -- Dumped by pg_dump version 16.0
 
--- Started on 2024-05-13 11:59:28
+-- Started on 2024-05-20 12:04:49
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -42,7 +42,7 @@ SET default_tablespace = '';
 SET default_table_access_method = heap;
 
 --
--- TOC entry 215 (class 1259 OID 16525)
+-- TOC entry 215 (class 1259 OID 16399)
 -- Name: event_categories; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -56,7 +56,7 @@ CREATE TABLE public.event_categories (
 ALTER TABLE public.event_categories OWNER TO postgres;
 
 --
--- TOC entry 216 (class 1259 OID 16530)
+-- TOC entry 216 (class 1259 OID 16404)
 -- Name: event_categories_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -81,7 +81,7 @@ ALTER SEQUENCE public.event_categories_id_seq OWNED BY public.event_categories.i
 
 
 --
--- TOC entry 217 (class 1259 OID 16531)
+-- TOC entry 217 (class 1259 OID 16405)
 -- Name: event_enrollments; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -100,7 +100,7 @@ CREATE TABLE public.event_enrollments (
 ALTER TABLE public.event_enrollments OWNER TO postgres;
 
 --
--- TOC entry 218 (class 1259 OID 16536)
+-- TOC entry 218 (class 1259 OID 16410)
 -- Name: event_enrollments_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -125,7 +125,7 @@ ALTER SEQUENCE public.event_enrollments_id_seq OWNED BY public.event_enrollments
 
 
 --
--- TOC entry 219 (class 1259 OID 16537)
+-- TOC entry 219 (class 1259 OID 16411)
 -- Name: event_locations; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -144,7 +144,7 @@ CREATE TABLE public.event_locations (
 ALTER TABLE public.event_locations OWNER TO postgres;
 
 --
--- TOC entry 220 (class 1259 OID 16542)
+-- TOC entry 220 (class 1259 OID 16416)
 -- Name: event_locations_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -169,7 +169,7 @@ ALTER SEQUENCE public.event_locations_id_seq OWNED BY public.event_locations.id;
 
 
 --
--- TOC entry 221 (class 1259 OID 16543)
+-- TOC entry 221 (class 1259 OID 16417)
 -- Name: event_tags; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -183,7 +183,7 @@ CREATE TABLE public.event_tags (
 ALTER TABLE public.event_tags OWNER TO postgres;
 
 --
--- TOC entry 222 (class 1259 OID 16546)
+-- TOC entry 222 (class 1259 OID 16420)
 -- Name: event_tags_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -208,7 +208,7 @@ ALTER SEQUENCE public.event_tags_id_seq OWNED BY public.event_tags.id;
 
 
 --
--- TOC entry 223 (class 1259 OID 16547)
+-- TOC entry 223 (class 1259 OID 16421)
 -- Name: events; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -230,7 +230,7 @@ CREATE TABLE public.events (
 ALTER TABLE public.events OWNER TO postgres;
 
 --
--- TOC entry 224 (class 1259 OID 16552)
+-- TOC entry 224 (class 1259 OID 16426)
 -- Name: events_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -255,7 +255,7 @@ ALTER SEQUENCE public.events_id_seq OWNED BY public.events.id;
 
 
 --
--- TOC entry 225 (class 1259 OID 16553)
+-- TOC entry 225 (class 1259 OID 16427)
 -- Name: locations; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -271,7 +271,7 @@ CREATE TABLE public.locations (
 ALTER TABLE public.locations OWNER TO postgres;
 
 --
--- TOC entry 226 (class 1259 OID 16558)
+-- TOC entry 226 (class 1259 OID 16432)
 -- Name: locations_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -296,7 +296,7 @@ ALTER SEQUENCE public.locations_id_seq OWNED BY public.locations.id;
 
 
 --
--- TOC entry 227 (class 1259 OID 16559)
+-- TOC entry 227 (class 1259 OID 16433)
 -- Name: provinces; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -313,7 +313,7 @@ CREATE TABLE public.provinces (
 ALTER TABLE public.provinces OWNER TO postgres;
 
 --
--- TOC entry 228 (class 1259 OID 16564)
+-- TOC entry 228 (class 1259 OID 16438)
 -- Name: provinces_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -338,7 +338,7 @@ ALTER SEQUENCE public.provinces_id_seq OWNED BY public.provinces.id;
 
 
 --
--- TOC entry 229 (class 1259 OID 16565)
+-- TOC entry 229 (class 1259 OID 16439)
 -- Name: tags; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -351,7 +351,7 @@ CREATE TABLE public.tags (
 ALTER TABLE public.tags OWNER TO postgres;
 
 --
--- TOC entry 230 (class 1259 OID 16570)
+-- TOC entry 230 (class 1259 OID 16444)
 -- Name: tags_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -376,7 +376,7 @@ ALTER SEQUENCE public.tags_id_seq OWNED BY public.tags.id;
 
 
 --
--- TOC entry 231 (class 1259 OID 16571)
+-- TOC entry 231 (class 1259 OID 16445)
 -- Name: users; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -392,7 +392,7 @@ CREATE TABLE public.users (
 ALTER TABLE public.users OWNER TO postgres;
 
 --
--- TOC entry 232 (class 1259 OID 16576)
+-- TOC entry 232 (class 1259 OID 16450)
 -- Name: users_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -417,7 +417,7 @@ ALTER SEQUENCE public.users_id_seq OWNED BY public.users.id;
 
 
 --
--- TOC entry 4674 (class 2604 OID 16577)
+-- TOC entry 4674 (class 2604 OID 16451)
 -- Name: event_categories id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -425,7 +425,7 @@ ALTER TABLE ONLY public.event_categories ALTER COLUMN id SET DEFAULT nextval('pu
 
 
 --
--- TOC entry 4675 (class 2604 OID 16578)
+-- TOC entry 4675 (class 2604 OID 16452)
 -- Name: event_enrollments id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -433,7 +433,7 @@ ALTER TABLE ONLY public.event_enrollments ALTER COLUMN id SET DEFAULT nextval('p
 
 
 --
--- TOC entry 4676 (class 2604 OID 16579)
+-- TOC entry 4676 (class 2604 OID 16453)
 -- Name: event_locations id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -441,7 +441,7 @@ ALTER TABLE ONLY public.event_locations ALTER COLUMN id SET DEFAULT nextval('pub
 
 
 --
--- TOC entry 4677 (class 2604 OID 16580)
+-- TOC entry 4677 (class 2604 OID 16454)
 -- Name: event_tags id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -449,7 +449,7 @@ ALTER TABLE ONLY public.event_tags ALTER COLUMN id SET DEFAULT nextval('public.e
 
 
 --
--- TOC entry 4678 (class 2604 OID 16581)
+-- TOC entry 4678 (class 2604 OID 16455)
 -- Name: events id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -457,7 +457,7 @@ ALTER TABLE ONLY public.events ALTER COLUMN id SET DEFAULT nextval('public.event
 
 
 --
--- TOC entry 4679 (class 2604 OID 16582)
+-- TOC entry 4679 (class 2604 OID 16456)
 -- Name: locations id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -465,7 +465,7 @@ ALTER TABLE ONLY public.locations ALTER COLUMN id SET DEFAULT nextval('public.lo
 
 
 --
--- TOC entry 4680 (class 2604 OID 16583)
+-- TOC entry 4680 (class 2604 OID 16457)
 -- Name: provinces id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -473,7 +473,7 @@ ALTER TABLE ONLY public.provinces ALTER COLUMN id SET DEFAULT nextval('public.pr
 
 
 --
--- TOC entry 4681 (class 2604 OID 16584)
+-- TOC entry 4681 (class 2604 OID 16458)
 -- Name: tags id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -481,7 +481,7 @@ ALTER TABLE ONLY public.tags ALTER COLUMN id SET DEFAULT nextval('public.tags_id
 
 
 --
--- TOC entry 4682 (class 2604 OID 16585)
+-- TOC entry 4682 (class 2604 OID 16459)
 -- Name: users id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -489,7 +489,7 @@ ALTER TABLE ONLY public.users ALTER COLUMN id SET DEFAULT nextval('public.users_
 
 
 --
--- TOC entry 4853 (class 0 OID 16525)
+-- TOC entry 4853 (class 0 OID 16399)
 -- Dependencies: 215
 -- Data for Name: event_categories; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -500,7 +500,7 @@ INSERT INTO public.event_categories VALUES (2, 'juli', 99);
 
 
 --
--- TOC entry 4855 (class 0 OID 16531)
+-- TOC entry 4855 (class 0 OID 16405)
 -- Dependencies: 217
 -- Data for Name: event_enrollments; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -508,15 +508,19 @@ INSERT INTO public.event_categories VALUES (2, 'juli', 99);
 
 
 --
--- TOC entry 4857 (class 0 OID 16537)
+-- TOC entry 4857 (class 0 OID 16411)
 -- Dependencies: 219
 -- Data for Name: event_locations; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
+INSERT INTO public.event_locations VALUES (1, 1, 'lolla', 'sanabria 1472
+', '300000', -98475857, -397262, 1);
+INSERT INTO public.event_locations VALUES (2, 1, 'met ', 'gaona 1360', '7', 66796, 24578, 1);
+INSERT INTO public.event_locations VALUES (3, 5, 'moma', 'yatay 240', '34000', 134567, -346557, 1);
 
 
 --
--- TOC entry 4859 (class 0 OID 16543)
+-- TOC entry 4859 (class 0 OID 16417)
 -- Dependencies: 221
 -- Data for Name: event_tags; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -524,7 +528,7 @@ INSERT INTO public.event_categories VALUES (2, 'juli', 99);
 
 
 --
--- TOC entry 4861 (class 0 OID 16547)
+-- TOC entry 4861 (class 0 OID 16421)
 -- Dependencies: 223
 -- Data for Name: events; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -532,7 +536,7 @@ INSERT INTO public.event_categories VALUES (2, 'juli', 99);
 
 
 --
--- TOC entry 4863 (class 0 OID 16553)
+-- TOC entry 4863 (class 0 OID 16427)
 -- Dependencies: 225
 -- Data for Name: locations; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -4577,7 +4581,7 @@ INSERT INTO public.locations VALUES (4037, 'Yerba Buena - Marcos Paz', 90, -26.8
 
 
 --
--- TOC entry 4865 (class 0 OID 16559)
+-- TOC entry 4865 (class 0 OID 16433)
 -- Dependencies: 227
 -- Data for Name: provinces; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -4589,7 +4593,6 @@ INSERT INTO public.provinces VALUES (18, 'Corrientes', 'Provincia de Corrientes'
 INSERT INTO public.provinces VALUES (22, 'Chaco', 'Provincia del Chaco', -26.386987686157227, -60.765117645263672, NULL);
 INSERT INTO public.provinces VALUES (26, 'Chubut', 'Provincia del Chubut', -43.788627624511719, -68.5267333984375, NULL);
 INSERT INTO public.provinces VALUES (30, 'Entre Ríos', 'Provincia de Entre Ríos', -32.058929443359375, -59.201263427734375, NULL);
-INSERT INTO public.provinces VALUES (34, 'Formosa', 'Provincia de Formosa', -24.895086288452148, -59.93218994140625, NULL);
 INSERT INTO public.provinces VALUES (38, 'Jujuy', 'Provincia de Jujuy', -23.319974899291992, -65.7644271850586, NULL);
 INSERT INTO public.provinces VALUES (42, 'La Pampa', 'Provincia de La Pampa', -37.135066986083984, -65.447647094726562, NULL);
 INSERT INTO public.provinces VALUES (46, 'La Rioja', 'Provincia de La Rioja', -29.6849365234375, -67.181755065917969, NULL);
@@ -4606,10 +4609,11 @@ INSERT INTO public.provinces VALUES (86, 'Santiago del Estero', 'Provincia de Sa
 INSERT INTO public.provinces VALUES (90, 'Tucumán', 'Provincia de Tucumán', -26.948284149169922, -65.3647689819336, NULL);
 INSERT INTO public.provinces VALUES (94, 'Tierra del Fuego, Antártida e Islas del Atlántico Sur', 'Provincia de Tierra del Fuego, Antártida e Islas del Atlántico Sur', -82.521133422851562, -50.74285888671875, NULL);
 INSERT INTO public.provinces VALUES (2, 'juli', 'Ciudad Autónoma de Buenos Aires', -34.61444091796875, -58.445877075195312, 99);
+INSERT INTO public.provinces VALUES (34, 'MAIU', 'MAIU 123', -24.89508628845215, -59.93218994140625, 100);
 
 
 --
--- TOC entry 4867 (class 0 OID 16565)
+-- TOC entry 4867 (class 0 OID 16439)
 -- Dependencies: 229
 -- Data for Name: tags; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -4617,12 +4621,22 @@ INSERT INTO public.provinces VALUES (2, 'juli', 'Ciudad Autónoma de Buenos Aire
 
 
 --
--- TOC entry 4869 (class 0 OID 16571)
+-- TOC entry 4869 (class 0 OID 16445)
 -- Dependencies: 231
 -- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 INSERT INTO public.users VALUES (1, 'Pablo', 'Ulman', 'polshu@polshu.com.ar', 'pablito');
+INSERT INTO public.users VALUES (10, 'maiu', 'kupi', 'maiukuper@mail.com', 'maiu123');
+INSERT INTO public.users VALUES (11, 'juli', 'izb', 'juli123@mail.com', '111123');
+INSERT INTO public.users VALUES (2, 'maia', 'kupersmid', 'maiukuper@mail', 'maiu123');
+INSERT INTO public.users VALUES (3, 'maria', 'kupppp', 'maria123@mail', 'maiu123');
+INSERT INTO public.users VALUES (4, 'maia', 'izbbbb', 'iz@mail', 'maiu123');
+INSERT INTO public.users VALUES (5, 'pepe', 'hola', 'pepe@mail', 'maiu123');
+INSERT INTO public.users VALUES (6, 'mai', 'kup', 'maiukuper', 'maiu123');
+INSERT INTO public.users VALUES (7, 'juana', 'lopez', 'juana@gmail', 'maiu123');
+INSERT INTO public.users VALUES (8, 'agus', 'gomez', '123@gmail', 'maiu123');
+INSERT INTO public.users VALUES (9, 'maiu', 'kupersch', 'maiukuper1234@gmail.com', 'maiu123');
 
 
 --
@@ -4649,7 +4663,7 @@ SELECT pg_catalog.setval('public.event_enrollments_id_seq', 1, false);
 -- Name: event_locations_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.event_locations_id_seq', 1, false);
+SELECT pg_catalog.setval('public.event_locations_id_seq', 3, true);
 
 
 --
@@ -4703,11 +4717,11 @@ SELECT pg_catalog.setval('public.tags_id_seq', 1, false);
 -- Name: users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.users_id_seq', 1, false);
+SELECT pg_catalog.setval('public.users_id_seq', 11, true);
 
 
 --
--- TOC entry 4684 (class 2606 OID 16587)
+-- TOC entry 4684 (class 2606 OID 16461)
 -- Name: event_categories PK_EventCategories; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4716,7 +4730,7 @@ ALTER TABLE ONLY public.event_categories
 
 
 --
--- TOC entry 4686 (class 2606 OID 16589)
+-- TOC entry 4686 (class 2606 OID 16463)
 -- Name: event_enrollments PK_EventEnrollments; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4725,7 +4739,7 @@ ALTER TABLE ONLY public.event_enrollments
 
 
 --
--- TOC entry 4688 (class 2606 OID 16591)
+-- TOC entry 4688 (class 2606 OID 16465)
 -- Name: event_locations PK_EventLocations; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4734,7 +4748,7 @@ ALTER TABLE ONLY public.event_locations
 
 
 --
--- TOC entry 4690 (class 2606 OID 16593)
+-- TOC entry 4690 (class 2606 OID 16467)
 -- Name: event_tags PK_EventTags; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4743,7 +4757,7 @@ ALTER TABLE ONLY public.event_tags
 
 
 --
--- TOC entry 4692 (class 2606 OID 16595)
+-- TOC entry 4692 (class 2606 OID 16469)
 -- Name: events PK_Events; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4752,7 +4766,7 @@ ALTER TABLE ONLY public.events
 
 
 --
--- TOC entry 4694 (class 2606 OID 16597)
+-- TOC entry 4694 (class 2606 OID 16471)
 -- Name: locations PK_Locations; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4761,7 +4775,7 @@ ALTER TABLE ONLY public.locations
 
 
 --
--- TOC entry 4696 (class 2606 OID 16599)
+-- TOC entry 4696 (class 2606 OID 16473)
 -- Name: provinces PK_Provinces ; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4770,7 +4784,7 @@ ALTER TABLE ONLY public.provinces
 
 
 --
--- TOC entry 4698 (class 2606 OID 16601)
+-- TOC entry 4698 (class 2606 OID 16475)
 -- Name: tags PK_Tags; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4779,7 +4793,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 4700 (class 2606 OID 16603)
+-- TOC entry 4700 (class 2606 OID 16477)
 -- Name: users PK_Users; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4788,7 +4802,7 @@ ALTER TABLE ONLY public.users
 
 
 --
--- TOC entry 4701 (class 2606 OID 16604)
+-- TOC entry 4701 (class 2606 OID 16478)
 -- Name: event_enrollments fk_event_enrollments_events; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4797,7 +4811,7 @@ ALTER TABLE ONLY public.event_enrollments
 
 
 --
--- TOC entry 4702 (class 2606 OID 16609)
+-- TOC entry 4702 (class 2606 OID 16483)
 -- Name: event_enrollments fk_event_enrollments_users; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4806,7 +4820,7 @@ ALTER TABLE ONLY public.event_enrollments
 
 
 --
--- TOC entry 4703 (class 2606 OID 16614)
+-- TOC entry 4703 (class 2606 OID 16488)
 -- Name: event_locations fk_event_locations_locations; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4815,7 +4829,7 @@ ALTER TABLE ONLY public.event_locations
 
 
 --
--- TOC entry 4704 (class 2606 OID 16619)
+-- TOC entry 4704 (class 2606 OID 16493)
 -- Name: event_tags fk_event_tags_events; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4824,7 +4838,7 @@ ALTER TABLE ONLY public.event_tags
 
 
 --
--- TOC entry 4705 (class 2606 OID 16624)
+-- TOC entry 4705 (class 2606 OID 16498)
 -- Name: event_tags fk_event_tags_tags; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4833,7 +4847,7 @@ ALTER TABLE ONLY public.event_tags
 
 
 --
--- TOC entry 4706 (class 2606 OID 16629)
+-- TOC entry 4706 (class 2606 OID 16503)
 -- Name: events fk_events_event_categories; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4842,7 +4856,7 @@ ALTER TABLE ONLY public.events
 
 
 --
--- TOC entry 4707 (class 2606 OID 16634)
+-- TOC entry 4707 (class 2606 OID 16508)
 -- Name: events fk_events_event_locations; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4851,7 +4865,7 @@ ALTER TABLE ONLY public.events
 
 
 --
--- TOC entry 4708 (class 2606 OID 16639)
+-- TOC entry 4708 (class 2606 OID 16513)
 -- Name: events fk_events_users; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4860,7 +4874,7 @@ ALTER TABLE ONLY public.events
 
 
 --
--- TOC entry 4709 (class 2606 OID 16644)
+-- TOC entry 4709 (class 2606 OID 16518)
 -- Name: locations fk_locations_provinces; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4868,7 +4882,7 @@ ALTER TABLE ONLY public.locations
     ADD CONSTRAINT fk_locations_provinces FOREIGN KEY (id_province) REFERENCES public.provinces(id);
 
 
--- Completed on 2024-05-13 11:59:28
+-- Completed on 2024-05-20 12:04:50
 
 --
 -- PostgreSQL database dump complete
