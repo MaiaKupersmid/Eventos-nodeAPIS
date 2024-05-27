@@ -25,7 +25,6 @@ router.get('', async (req, res) => {
         }
         return respuesta;
     }
-    
 });
 
 router.get('/:id', async (req, res) => {
