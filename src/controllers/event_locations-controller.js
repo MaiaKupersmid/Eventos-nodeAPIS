@@ -37,4 +37,22 @@ router.get('/:id', async (req, res) => {
     return respuesta;
 });
 
+router.get('/:id/location', async (req, res) => {
+    let respuesta;
+    let id = req.params.id;
+    let authorizationHeader = req.headers.authorization; 
+    if (authorizationHeader && authorizationHeader.split(' ')[0] === 'Bearer') {
+        let token = authorizationHeader.split(' ')[1];
+        const event_loc = await svc.getByIdAsync(id)
+        if (event_loc != null){
+            respuesta = res.status(200).json(event_loc);
+        } else {
+            respuesta = res.status(404).send(`Not found.`);
+        }
+    } else {
+        respuesta = res.status(401).send('Unauthorized');
+    }
+    return respuesta;
+});
+
 export default router;

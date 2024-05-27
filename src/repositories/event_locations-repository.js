@@ -35,4 +35,22 @@ export default class EventRepository {
         }
         return returnCat;
     }
+
+    getByIdLocationAsync = async (id) => {
+        let returnCat = null;
+        const client = new Client(DBConfig);
+        await client.connect();
+        try {
+            const sql = `SELECT * FROM public.event_locations WHERE id_location = $1`;
+            const values = [id];
+            const result = await client.query(sql, values);
+            await client.end();
+            returnCat = result.rows;
+        } catch (error) {
+            console.log(error);
+            returnCat = null;
+        }
+        return returnCat;
+    }
+
 }
