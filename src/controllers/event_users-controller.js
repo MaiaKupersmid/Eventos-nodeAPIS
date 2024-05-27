@@ -7,7 +7,6 @@ const svc = new UsersService();
 
 const claveSecreta = "MaiuJuli_0607"
 
-
 router.post('/login', async (req, res) => {
     let respuesta;
     let user = req.body;
