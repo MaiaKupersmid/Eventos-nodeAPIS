@@ -1,5 +1,7 @@
 import {Router} from 'express';
 import LocationsService from '../services/event_locations-service.js'
+import AutenticationMddleware from './../middlewares/autentication-middleware.js';
+
 import { parse } from 'dotenv';
 import jwt from 'jsonwebtoken';
 const router = Router();
@@ -39,31 +41,26 @@ router.get('/:id', async (req, res) => {
     return respuesta;
 });
 
-router.get('/:id/location', async (req, res) => {
+router.get('/:id/location', AutenticationMddleware.AuthMiddleware,  async (req, res) => {
     let respuesta;
     let  limit = req.query.limit;
     let offset = req.query.offset;
     let id = req.params.id;
-    let authorizationHeader = req.headers.authorization; 
-    let token = authorizationHeader.replace("Bearer ", "")
     limit = parseInt(limit);
     offset= parseInt(offset);
+    let id_user = req.id_user;
 
-    if (token) {
-        if (isNaN(limit) && isNaN(offset)){
-            console.log("error")
-            res.status(500).send("no es un numero");
-        } else {
-            const event_loc = await svc.getByIdLocationAsync(limit, offset, id)
+    if (isNaN(limit) && isNaN(offset)){
+        console.log("error")
+        res.status(500).send("no es un numero");
+    } else {
+        const event_loc = await svc.getByIdLocationAsync(limit, offset, id, id_user)
             if (event_loc != null){
                 respuesta = res.status(200).json(event_loc);
             } else {
                 respuesta = res.status(404).send(`Not found.`);
             }
         }
-    } else {
-        respuesta = res.status(401).send('Unauthorized');
-    }
     return respuesta;
 });
 

@@ -36,13 +36,14 @@ export default class EventRepository {
         return returnCat;
     }
 
-    getByIdLocationAsync = async (limit, offset, id) => {
+    getByIdLocationAsync = async (limit, offset, id, id_user) => {
         let returnCat = null;
         const client = new Client(DBConfig);
         await client.connect();
         try {
-            const sql = `SELECT * FROM public.event_locations WHERE id_location = $3 LIMIT $1 OFFSET $2`;
-            const values = [limit, offset, id];
+            //const sql = `SELECT * FROM public.event_locations WHERE id_location = $3 LIMIT $1 OFFSET $2`;
+            const sql = `SELECT * FROM public.event_locations WHERE id_location = $3  AND id_creator_user = $4 LIMIT $1 OFFSET $2 `;
+            const values = [limit, offset, id, id_user];
             const result = await client.query(sql, values);
             await client.end();
             returnCat = result.rows;
