@@ -18,5 +18,4 @@ export default class LocationsService {
         const event_loc = await repo.getByIdLocationAsync(limit, offset, id, id_user);
         return event_loc;
     }
-
 }
