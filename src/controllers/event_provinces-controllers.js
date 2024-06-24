@@ -94,6 +94,6 @@ router.delete('/:id', async (req, res) => {
         respuesta = res.status(404).send(`Not Found.`);
     }
     return respuesta;
-})
+});
 
 export default router;
