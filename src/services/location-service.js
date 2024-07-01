@@ -1,4 +1,4 @@
-import EventRepository from '../repositories/event_locations-repository.js';
+import EventRepository from '../repositories/location-repository.js';
 
 export default class LocationsService {
     getAllAsync = async (limit, offset) => {

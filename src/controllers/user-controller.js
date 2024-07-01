@@ -1,7 +1,7 @@
 import {Router} from 'express';
 import { parse } from 'dotenv';
 import jwt from 'jsonwebtoken';
-import UsersService from '../services/event_users-service.js';
+import UsersService from '../services/user-service.js';
 const router = Router();
 const svc = new UsersService();
 

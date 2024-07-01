@@ -1,4 +1,4 @@
-import EventRepository from '../repositories/ubicaciones_eventos-repository.js';
+import EventRepository from '../repositories/event-location-repository.js';
 
 export default class LocationsService {
     getByIdUserCreatorAsync = async (limit, offset, id_user) => {

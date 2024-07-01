@@ -1,6 +1,6 @@
 import {Router} from 'express';
-import LocationsService from '../services/event_locations-service.js'
-import AutenticationMddleware from './../middlewares/autentication-middleware.js';
+import LocationsService from '../services/location-service.js'
+import AutenticationMddleware from '../middlewares/autentication-middleware.js';
 
 import { parse } from 'dotenv';
 import jwt from 'jsonwebtoken';

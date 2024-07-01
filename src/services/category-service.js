@@ -1,4 +1,4 @@
-import CategorieRepository from '../repositories/event_categories-repository.js';
+import CategorieRepository from '../repositories/category-repository.js';
 
 export default class CategoriesService {
     getAllAsync = async (limit, offset) => {

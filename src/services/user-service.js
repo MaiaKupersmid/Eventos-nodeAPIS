@@ -1,4 +1,4 @@
-import UsersRepository from '../repositories/event_users-repository.js';
+import UsersRepository from '../repositories/user-repository.js';
 
 export default class UsersService {
     getByUsernameAsync = async (entity) => {

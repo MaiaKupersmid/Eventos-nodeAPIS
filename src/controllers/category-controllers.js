@@ -1,5 +1,5 @@
 import {Router} from 'express';
-import CategoriesService from './../services/event_categories-service.js'
+import CategoriesService from '../services/category-service.js'
 import { parse } from 'dotenv';
 const router = Router();
 const svc = new CategoriesService();
