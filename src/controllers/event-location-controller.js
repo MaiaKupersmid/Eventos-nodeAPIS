@@ -14,12 +14,16 @@ router.get('',  AutenticationMddleware.AuthMiddleware, async (req, res) => {
     let offset = req.query.offset;
     let id_user = req.id_user;
     let respuesta;
-    limit = parseInt(limit);
-    offset= parseInt(offset);
-    if (isNaN(limit) && isNaN(offset)){
-        console.log("error")
-        res.status(500).send("no es un numero");
-    } else {
+    if(isNaN(offset))
+    {
+        offset = 0;
+    }
+
+    if(isNaN(limit))
+    {
+        limit = 99999999;
+       
+    }
         const returnArray = await svc.getByIdUserCreatorAsync(limit, offset, id_user);
         if (returnArray != null){
             respuesta = res.status(200).json(returnArray);
@@ -27,7 +31,6 @@ router.get('',  AutenticationMddleware.AuthMiddleware, async (req, res) => {
             respuesta = res.status(401).send(`Unauthorized.`);
         }
         return respuesta;
-    }
 });
 
 router.get('/:id',  AutenticationMddleware.AuthMiddleware, async (req, res) => {
@@ -108,10 +111,10 @@ router.delete('/:id', AutenticationMddleware.AuthMiddleware, async (req, res) =>
         let respuesta;
         let id = req.params.id;
         const province = await svc.deleteByIdAsync(id)
-        if (province != null){
+        if (province != 0){
             respuesta = res.status(200).json("Eliminada");
         } else {
-            respuesta = res.status(404).send(`Not Found.`);
+            respuesta = res.status(404).send(`Provincia no econtrada o sin posibilidad de eliminarse.`);
         }
         return respuesta;
     } catch(error) {

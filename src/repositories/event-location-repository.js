@@ -125,7 +125,7 @@ export default class UbicacionesEventos{
     }
 
     deleteByIdAsync = async (id) => {
-        let returnLoc = null;
+        let rowCount = 0;
         const client = new Client(DBConfig);
         await client.connect();
         try {
@@ -133,11 +133,10 @@ export default class UbicacionesEventos{
             const values = [id];
             const result = await client.query(sql, values);
             await client.end();
-            returnLoc = result;
+            rowCount = result.rowCount;
         } catch (error) {
             console.log(error);
-            returnLoc = 1;
         }
-        return returnLoc; 
+        return rowCount; 
     }
 }

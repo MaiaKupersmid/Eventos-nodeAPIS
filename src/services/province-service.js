@@ -1,4 +1,4 @@
-import ProvinceRepository from '../repositories/prvince-repository.js';
+import ProvinceRepository from '../repositories/province-repository.js';
 
 export default class ProvinceService {
     getAllAsync = async (limit, offset) => {

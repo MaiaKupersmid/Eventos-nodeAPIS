@@ -33,8 +33,19 @@ export default class EventsService {
 
     deleteByIdAsync = async (id) => {
         const repo = new ListEvents();
-        console.log(id)
         const eve = await repo.deleteByIdAsync(id);
         return eve;
+    }
+
+    createEnrollmentAsync = async (idUser, idEvent, fecha) => {
+        const repo = new ListEvents();
+        const eve = await repo.CreateEnrollmentAsync(idUser, idEvent, fecha);
+        return eve;
+    }
+   
+    getEnrollmentAsync = async (id) => {
+        const repo = new ListEvents();
+        const returnArray = await repo.getEnrollmentAsync(id);
+        return returnArray;
     }
 }

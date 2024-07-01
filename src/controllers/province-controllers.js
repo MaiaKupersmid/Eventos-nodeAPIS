@@ -7,21 +7,27 @@ router.get('', async (req, res) => {
     let limit = req.query.limit;
     let offset = req.query.offset;
     let respuesta;
-    limit = parseInt(limit);
-    offset = parseInt(offset);
-
-    if (isNaN(limit) && isNaN(offset)){
-        console.log("error")
-        res.status(500).send("no es un numero");
-    } else {
-        const returnArray = await svc.getAllAsync(limit, offset);
-        if (returnArray != null){
-            respuesta = res.status(200).json(returnArray);
-        } else {
-            respuesta = res.status(500).send(`Error interno.`);
-        }
-        return respuesta;
+    limit = parseInt(limit, 10);
+    offset = parseInt(offset, 10);
+    if(isNaN(offset))
+    {
+        offset = 0;
     }
+
+    if(isNaN(limit))
+    {
+        limit = 99999999;
+       
+    }
+
+    const returnArray = await svc.getAllAsync(limit, offset);
+    if (returnArray != null){
+        respuesta = res.status(200).json(returnArray);
+    } else {
+        respuesta = res.status(500).send(`Error interno.`);
+    }
+    return respuesta;
+    
 });
 
 router.get('/:id', async (req, res) => {
@@ -87,13 +93,19 @@ router.put('', async (req, res) => {
 router.delete('/:id', async (req, res) => {
     let respuesta;
     let id = req.params.id;
-    const province = await svc.deleteByIdAsync(id)
-    if (province != null){
-        respuesta = res.status(200).json("Eliminada");
-    } else {
-        respuesta = res.status(404).send(`Not Found.`);
+    try {
+        const rowCount = await svc.deleteByIdAsync(id)
+        if (rowCount != 0){
+            respuesta = res.status(200).json("Eliminada");
+        } else {
+            console.log(id)
+            respuesta = res.status(404).send(`Provincia no econtrada o sin posibilidad de eliminarse.`);
+        }
+        return respuesta;
+    } catch (error){
+        console.error('Error al intentar eliminar provincia:', error);
+        return res.status(500).send('Error interno del servidor.');
     }
-    return respuesta;
 });
 
 export default router;

@@ -10,10 +10,16 @@ router.get('', async (req, res) => {
     let respuesta;
     limit = parseInt(limit);
     offset= parseInt(offset);
-    if (isNaN(limit) && isNaN(offset)){
-        console.log("error")
-        res.status(500).send("no es un numero");
-    } else {
+    if(isNaN(offset))
+    {
+        offset = 0;
+    }
+
+    if(isNaN(limit))
+    {
+        limit = 99999999;
+       
+    }
         const returnArray = await svc.getAllAsync(limit, offset);
         if (returnArray != null){
             respuesta = res.status(200).json(returnArray);
@@ -21,7 +27,6 @@ router.get('', async (req, res) => {
             respuesta = res.status(500).send(`Error interno.`);
         }
         return respuesta;
-    }
     
 });
 
@@ -65,7 +70,7 @@ router.delete('/:id', async (req, res) => {
     let respuesta;
     let id = req.params.id;
     const cat = await svc.deleteByIdAsync(id)
-    if (cat != null){
+    if (cat != 0){
         respuesta = res.status(200).json("Eliminada");
     } else {
         respuesta = res.status(404).send(`Not Found.`);

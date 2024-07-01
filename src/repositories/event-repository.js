@@ -3,48 +3,6 @@ import pkg from 'pg'
 const { Client, Pool }  = pkg;
 
 export default class ListEvents {
-    /*getAllAsync = async (limit, offset) => {
-        let returnArray = null;
-        const client = new Client(DBConfig);
-        try {
-            await client.connect();
-            const sql = `SELECT 
-            e.id, e.name, 
-            e.description, 
-            e.start_date, 
-            e.duration_in_minutes, 
-            e.price, 
-            e.enabled_for_enrollment, 
-            e.max_assistance,
-            json_build_object( 
-                'nombre'	, u.first_name, 
-                'apellido' 	,  u.last_name
-            ) AS usuario,
-            json_build_object(
-                'categoria'	, cat.name
-            ) AS Categoria,
-            json_build_object(
-                'locacion'	, loc.name, 
-                'direccion'	, loc.full_address, 
-                'longitud'	, loc.longitude, 
-                'latitud'	, loc.latitude
-            ) AS Loc
-        FROM public.events AS e
-        INNER JOIN public.event_categories AS cat ON e.id_event_category = cat.id
-        INNER JOIN public.event_locations AS loc ON e.id_event_location = loc.id
-        INNER JOIN public.users AS u ON e.id_creator_user = u.id
-        LIMIT $1  
-        OFFSET $2`;
-            const values = [limit, offset];
-            const result = await client.query(sql, values);
-            await client.end();
-            returnArray = result.rows;
-        } catch (error) {
-            console.log(error);
-        }
-        return returnArray;
-    }*/
-
     getByIdAsync = async (id) => {
         let returnArray = null;
         const client = new Client(DBConfig);
@@ -179,7 +137,7 @@ export default class ListEvents {
         }
         if(filters.startdate != null){
             miQuery += `AND e.start_date = $${i} `
-            values.push(filters.startdate)
+            values.push('%' + filters.startdate + '%')
             i++;
         }
         if(filters.tag != null){
@@ -197,7 +155,6 @@ export default class ListEvents {
             values.push(filters.offset)
             i++;
         }
-        console.log(miQuery)
         try {
             const sql = miQuery             
             const result = await client.query(sql, values);
@@ -309,24 +266,53 @@ export default class ListEvents {
     }
 
     deleteByIdAsync = async (id) => {
-        let returnCEE = null;
+        let rowCount = 0;
         const client = new Client(DBConfig);
         await client.connect();
-        console.log(id);
         try {
-            const sqlTags = 'DELETE FROM public.event_tags WHERE id_event = $1';
-            const valuesTags = [id];
-            const resultTags = await client.query(sqlTags, valuesTags);
             const sqlEvents = 'DELETE FROM public.events WHERE id = $1';
             const valuesEvents = [id];
-            const resultEvents = await client.query(sqlEvents, valuesEvents);
-            
+            const result = await client.query(sqlEvents, valuesEvents);
             await client.end();
-            returnCEE = resultEvents.rowCount
+            rowCount = result.rowCount;
         } catch (error) {
             console.log(error);
-            returnCEE = null;
         }
-        return returnCEE; 
+        return rowCount; 
     };
+
+    CreateEnrollmentAsync = async (idUser, idEvent, fecha) => {
+        let rowCount = 0;
+        const client = new Client(DBConfig);
+        await client.connect();
+        try {
+            const sqlEvents = `INSERT INTO public.event_enrollments(
+                id_event, id_user, registration_date_time
+                )VALUES ($1, $2, $3);`
+            const valuesEvents = [idUser, idEvent, fecha];
+            const result = await client.query(sqlEvents, valuesEvents);
+            await client.end();
+            rowCount = result.rowCount;
+        } catch (error) {
+            console.log(error);
+        }
+        return rowCount; 
+    }
+
+    getEnrollmentAsync = async (id) => {
+        let returnCount = 0;
+        const client = new Client(DBConfig);
+        try {
+            await client.connect();
+            const sql = `SELECT COUNT(*) as Cantidad FROM public.event_enrollments WHERE id_event = $1`;
+            const values = [id];
+            const result = await client.query(sql, values);
+            console.log(result.rows[0]["Cantidad"])
+            await client.end();
+            returnCount = result.rows[0]["Cantidad"];
+        } catch (error) {
+            console.log(error);
+        }
+        return returnCount;
+    }
 }

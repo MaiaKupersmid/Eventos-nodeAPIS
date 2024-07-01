@@ -89,7 +89,7 @@ export default class CategorieRepository {
     }
 
     deleteByIdAsync = async (id) => {
-        let returnCategorie = null;
+        let rowCount = 0;
         const client = new Client(DBConfig);
         await client.connect();
         try {
@@ -97,11 +97,10 @@ export default class CategorieRepository {
             const values = [id];
             const result = await client.query(sql, values);
             await client.end();
-            returnCategorie = result;
+            rowCount = result.rowCount;
         } catch (error) {
             console.log(error);
-            returnCategorie = 1;
         }
-        return returnCategorie; 
+        return rowCount; 
     }
 }

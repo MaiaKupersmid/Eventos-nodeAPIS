@@ -15,10 +15,16 @@ router.get('', async (req, res) => {
     let respuesta;
     limit = parseInt(limit);
     offset= parseInt(offset);
-    if (isNaN(limit) && isNaN(offset)){
-        console.log("error")
-        res.status(500).send("no es un numero");
-    } else {
+    if(isNaN(offset))
+    {
+        offset = 0;
+    }
+
+    if(isNaN(limit))
+    {
+        limit = 99999999;
+       
+    }
         const returnArray = await svc.getAllAsync(limit, offset);
         if (returnArray != null){
             respuesta = res.status(200).json(returnArray);
@@ -26,7 +32,6 @@ router.get('', async (req, res) => {
             respuesta = res.status(500).send(`Error interno.`);
         }
         return respuesta;
-    }
 });
 
 router.get('/:id', async (req, res) => {

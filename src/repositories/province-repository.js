@@ -8,7 +8,7 @@ export default class ProvinceRepository {
         const client = new Client(DBConfig);
         try {
             await client.connect();
-            const sql = `SELECT * FROM public.provinces LIMIT $1 OFFSET $2`;
+            const sql = `SELECT * FROM public.provinces order by id LIMIT $1 OFFSET $2`;
             const values = [limit, offset];
             const result = await client.query(sql, values);
             await client.end();
@@ -121,7 +121,7 @@ export default class ProvinceRepository {
     }
 
     deleteByIdAsync = async (id) => {
-        let returnProvince = null;
+        let rowCount = 0;
         const client = new Client(DBConfig);
         await client.connect();
         try {
@@ -129,11 +129,10 @@ export default class ProvinceRepository {
             const values = [id];
             const result = await client.query(sql, values);
             await client.end();
-            returnProvince = result;
+            rowCount = result.rowCount;
         } catch (error) {
             console.log(error);
-            returnProvince = 1;
         }
-        return returnProvince; 
+        return rowCount; 
     }
 }
