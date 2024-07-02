@@ -71,7 +71,6 @@ router.delete(
     let respuesta;
     let id = req.params.id;
     const eve = await svc.deleteByIdAsync(id);
-    console.log(eve);
     if (eve != 0) {
       respuesta = res.status(200).json("Eliminada");
     } else {
@@ -129,8 +128,7 @@ router.post(
   }
 );
 
-router.delete(
-  "/:id/enrollment",
+router.delete("/:id/enrollment",
   AutenticationMddleware.AuthMiddleware,
   async (req, res) => {
     let idEvento = req.params.id;
@@ -183,4 +181,42 @@ router.get("/:id/enrollment", async (req, res) => {
   return respuesta;
 });
 
-export default router;
+router.patch("/:id/enrollment/:rating",
+AutenticationMddleware.AuthMiddleware,
+async (req, res) => {
+  try{
+
+    let idEvent_enroll = req.params.id;
+    let rating = parseInt(req.params.rating);
+    let idUsuario = req.id_user;
+    const observations = req.body.observations;
+    let respuesta = null;
+    
+    const event_detalle = await svc.getByIdAsync(idEvent_enroll);
+    if (event_detalle != null) {
+      const startDate = new Date(event_detalle[0].start_date);
+      const currentDate = new Date();
+      if ((startDate) <= currentDate) {
+        if(rating>10 || rating<1){
+          respuesta = res.status(400).send(`El rating debe ser entre 1 y 10!`);
+        }else{
+          if (e) {
+            const event_rating = await svc.patchRatingAsync(rating, idEvent_enroll, idUsuario);
+            respuesta = res.status(200).json("Rankeada correctamente");
+          } else {
+            respuesta = res.status(404).send(`Bad Request..`);
+          }
+        }
+        
+      } else {
+        respuesta = res.status(400).send(`El evento no sucedio aún!`);
+      }
+    } else {
+      respuesta = res.status(404).send(`El evento no existe!`);
+    }  
+  } catch(error){
+    return res.status(404).send("not found");
+  }
+  });
+  
+  export default router;

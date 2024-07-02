@@ -60,4 +60,10 @@ export default class EventsService {
         const user = await repo.getEnrollmentByFilterAsync(filters, limit, offset, idEvento);
         return user;
     }
+
+    patchRatingAsync = async (rating, id_event, id_user) => {
+        const repo = new ListEvents();
+        const eve = await repo.patchRatingAsync(rating, id_event, id_user);
+        return eve;
+    }
 }

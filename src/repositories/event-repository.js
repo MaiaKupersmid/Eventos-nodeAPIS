@@ -369,9 +369,9 @@ export default class ListEvents {
     WHERE 1=1 `;
 
     if (idEvento != null) {
-        miQuery += `AND enr.id_event = ($${i}) `;
-        values.push(idEvento);
-        i++;
+      miQuery += `AND enr.id_event = ($${i}) `;
+      values.push(idEvento);
+      i++;
     }
     if (filters.first_name != null) {
       miQuery += `AND lower(us.first_name) like lower($${i}) `;
@@ -413,7 +413,30 @@ export default class ListEvents {
       const result = await client.query(sql, values);
       await client.end();
       returnEntity = result.rows;
-      if (returnEntity[0] == null){
+      if (returnEntity[0] == null) {
+        returnEntity = null;
+      }
+    } catch (error) {
+      console.log(error);
+      returnEntity = null;
+    }
+    return returnEntity;
+  };
+
+  patchRatingAsync = async (rating, id_event, id_user) => {
+    let returnEntity = null;
+    const client = new Client(DBConfig);
+    await client.connect();
+    let miQuery = `UPDATE public.event_enrollments 
+                  SET rating = $1
+                  WHERE id_event = $2 AND id_user = $3 `;
+    try {
+      const sql = miQuery;
+      const values = [rating, id_event, id_user];
+      const result = await client.query(sql, values);
+      await client.end();
+      returnEntity = result.rows;
+      if (returnEntity = 0) {
         returnEntity = null;
       }
     } catch (error) {
@@ -423,7 +446,3 @@ export default class ListEvents {
     return returnEntity;
   };
 }
-
-/* UPDATE public.event_enrollments
-	SET rating=7
-	WHERE id_event = 9 AND id_user = 52;*/
