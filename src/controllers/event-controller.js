@@ -159,7 +159,28 @@ router.delete(
       respuesta = res.status(404).send(`El evento no existe!`);
     }
     return respuesta;
+});
+
+router.get("/:id/enrollment", async (req, res) => {
+  let respuesta;
+  const filtros = req.query;
+  let idEvento = req.params.id;
+  let limit = req.query.limit;
+  let offset = req.query.offset;
+  if (isNaN(offset)) {
+    offset = 0;
   }
-);
+
+  if (isNaN(limit)) {
+    limit = 99999999;
+  }
+  const usersEnrollments = await svc.getEnrollmentByFilterAsync(filtros, limit, offset, idEvento);
+  if (usersEnrollments != null) {
+    respuesta = res.status(200).json(usersEnrollments);
+  } else {
+    respuesta = res.status(401).send("No se encontro tu busqueda");
+  }
+  return respuesta;
+});
 
 export default router;

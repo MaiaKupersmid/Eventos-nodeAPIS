@@ -54,4 +54,10 @@ export default class EventsService {
         const eve = await repo.DeleteEnrollmentAsync(idUser, idEvent, fecha);
         return eve;
     }
+  
+    getEnrollmentByFilterAsync = async (filters, limit, offset, idEvento) => {
+        const repo = new ListEvents();
+        const user = await repo.getEnrollmentByFilterAsync(filters, limit, offset, idEvento);
+        return user;
+    }
 }

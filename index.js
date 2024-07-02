@@ -20,8 +20,6 @@ app.use("/api/location", RouterLocation);
 app.use("/api/event-category", RouterCategory);
 app.use("/api/event-location", RouterEventLocation);
 
-// app.use("/api/listado_users", Router5);
-// app.use("/api/inscripcion_eventos", Router9);
 // app.use("/api/rating_eventos", Router10);
 
 
