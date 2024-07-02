@@ -423,3 +423,7 @@ export default class ListEvents {
     return returnEntity;
   };
 }
+
+/* UPDATE public.event_enrollments
+	SET rating=7
+	WHERE id_event = 9 AND id_user = 52;*/
