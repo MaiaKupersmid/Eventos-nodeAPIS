@@ -37,9 +37,9 @@ export default class EventsService {
         return eve;
     }
 
-    createEnrollmentAsync = async (idUser, idEvent, fecha) => {
+    createEnrollmentAsync = async (idUser, idEvent) => {
         const repo = new ListEvents();
-        const eve = await repo.CreateEnrollmentAsync(idUser, idEvent, fecha);
+        const eve = await repo.CreateEnrollmentAsync(idUser, idEvent);
         return eve;
     }
    
@@ -47,5 +47,11 @@ export default class EventsService {
         const repo = new ListEvents();
         const returnArray = await repo.getEnrollmentAsync(id);
         return returnArray;
+    }
+
+    deleteEnrollmentAsync = async (idUser, idEvent, fecha) => {
+        const repo = new ListEvents();
+        const eve = await repo.DeleteEnrollmentAsync(idUser, idEvent, fecha);
+        return eve;
     }
 }

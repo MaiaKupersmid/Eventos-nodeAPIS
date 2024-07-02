@@ -289,7 +289,7 @@ export default class ListEvents {
             const sqlEvents = `INSERT INTO public.event_enrollments(
                 id_event, id_user, registration_date_time
                 )VALUES ($1, $2, $3);`
-            const valuesEvents = [idUser, idEvent, fecha];
+            const valuesEvents = [idEvent, idUser, fecha];
             const result = await client.query(sqlEvents, valuesEvents);
             await client.end();
             rowCount = result.rowCount;
@@ -307,12 +307,31 @@ export default class ListEvents {
             const sql = `SELECT COUNT(*) as Cantidad FROM public.event_enrollments WHERE id_event = $1`;
             const values = [id];
             const result = await client.query(sql, values);
-            console.log(result.rows[0]["Cantidad"])
+            console.log(result.rows[0])
             await client.end();
-            returnCount = result.rows[0]["Cantidad"];
+            returnCount = result.rows[0];
         } catch (error) {
             console.log(error);
         }
         return returnCount;
+    }
+
+    DeleteEnrollmentAsync = async (idUser, idEvent) => {
+        let rowCount = 0;
+        const client = new Client(DBConfig);
+        await client.connect();
+        console.log(idUser);
+        console.log(idEvent);
+        try {
+            const sqlEvents = `DELETE FROM public.event_enrollments WHERE id_user = $2 AND id_event = $1;`
+            const valuesEvents = [idEvent, idUser];
+            const result = await client.query(sqlEvents, valuesEvents);
+            await client.end();
+            rowCount = result.rowCount;
+            console.log(rowCount);
+        } catch (error) {
+            console.log(error);
+        }
+        return rowCount; 
     }
 }
