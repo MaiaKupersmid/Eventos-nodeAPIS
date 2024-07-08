@@ -21,7 +21,6 @@ export default class ProvinceRepository {
 
     getByIdAsync = async (id) => {
         let returnProvince = null;
-        console.log("juli", id)
         const client = new Client(DBConfig);
         await client.connect();
         try {
@@ -29,10 +28,12 @@ export default class ProvinceRepository {
             const values = [id];
             const result = await client.query(sql, values);
             await client.end();
-            returnProvince = result.rows;
+            if (result.rows.length > 0){
+                returnProvince = result.rows[0];
+            }
         } catch (error) {
             console.log(error);
-            returnProvince = 1;
+            returnProvince = null;
         }
         return returnProvince;
     }
@@ -46,10 +47,12 @@ export default class ProvinceRepository {
             const values = [id];
             const result = await client.query(sql, values);
             await client.end();
-            returnProvs = result.rows;
-        } catch (error) {
+            if (result.rows.length > 0){
+                returnProvs = result.rows[0];
+            }
+            } catch (error) {
             console.log(error);
-            returnProvs = 1;
+            returnProvs = null;
         }
         return returnProvs;
     }

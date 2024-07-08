@@ -4,7 +4,8 @@ const { Client, Pool } = pkg;
 
 export default class ListEvents {
   getByIdAsync = async (id) => {
-    let returnArray = null;
+    let returnEntity = null;
+    console.log("REPO getByIdAsync: ", id)
     const client = new Client(DBConfig);
     try {
       await client.connect();
@@ -70,7 +71,7 @@ export default class ListEvents {
                           LEFT JOIN public.event_tags AS eventTags ON tags.id = eventTags.id_tag
                           WHERE eventTags.id_event = e.id
                      )
-          )
+          ) AS event
           FROM public.events AS e
           LEFT JOIN public.event_categories AS cat ON e.id_event_category = cat.id
           LEFT JOIN public.event_locations AS Eloc ON e.id_event_location = Eloc.id
@@ -82,11 +83,15 @@ export default class ListEvents {
       const values = [id];
       const result = await client.query(sql, values);
       await client.end();
-      returnArray = result.rows;
+      if (result.rows.length > 0){
+        returnEntity = result.rows[0];
+      }
+      
     } catch (error) {
       console.log(error);
     }
-    return returnArray;
+    console.log("xxx", returnEntity)
+    return returnEntity;
   };
 
   getByFilter = async (filters, limit, offset) => {
@@ -167,7 +172,7 @@ export default class ListEvents {
     return returnEntity;
   };
 
-  createAsync = async (entity) => {
+  createAsync = async (entity, idUser) => {
     let returnArray = null;
     const client = new Client(DBConfig);
     try {
@@ -195,7 +200,7 @@ export default class ListEvents {
         entity?.price ?? 0,
         entity?.enabled_for_enrollment ?? 0,
         entity?.max_assistance ?? 0,
-        entity?.id_creator_user ?? 0,
+        idUser
       ];
       const result = await client.query(sql, values);
       await client.end();
@@ -206,7 +211,8 @@ export default class ListEvents {
     return returnArray;
   };
 
-  getByIdAsync = async (id) => {
+    
+  getEnrollmentByIdAsync = async (id) => {
     let returnCat = null;
     const client = new Client(DBConfig);
     await client.connect();
@@ -223,6 +229,7 @@ export default class ListEvents {
     return returnCat;
   };
 
+  
   updateAsync = async (entity) => {
     let returnArray = null;
     let id = entity.id;
@@ -270,7 +277,7 @@ export default class ListEvents {
   };
 
   deleteByIdAsync = async (id) => {
-    let rowCount = 0;
+    let rowss = 0;
     const client = new Client(DBConfig);
     await client.connect();
     try {
@@ -278,11 +285,11 @@ export default class ListEvents {
       const valuesEvents = [id];
       const result = await client.query(sqlEvents, valuesEvents);
       await client.end();
-      rowCount = result.rowCount;
+      rowss = result.rowCount;
     } catch (error) {
       console.log(error);
     }
-    return rowCount;
+    return rowss;
   };
 
   CreateEnrollmentAsync = async (idUser, idEvent, fecha) => {
@@ -321,22 +328,20 @@ export default class ListEvents {
   };
 
   DeleteEnrollmentAsync = async (idUser, idEvent) => {
-    let rowCount = 0;
+    let rowss = 0;
     const client = new Client(DBConfig);
     await client.connect();
-    console.log(idUser);
-    console.log(idEvent);
     try {
       const sqlEvents = `DELETE FROM public.event_enrollments WHERE id_user = $2 AND id_event = $1;`;
       const valuesEvents = [idEvent, idUser];
       const result = await client.query(sqlEvents, valuesEvents);
       await client.end();
-      rowCount = result.rowCount;
-      console.log(rowCount);
+      console.log(result.rowCount)
+      rowss = result.rowCount;
     } catch (error) {
       console.log(error);
     }
-    return rowCount;
+    return rowss;
   };
 
   getEnrollmentByFilterAsync = async (filters, limit, offset, idEvento) => {
@@ -427,9 +432,7 @@ export default class ListEvents {
     let returnEntity = null;
     const client = new Client(DBConfig);
     await client.connect();
-    let miQuery = `UPDATE public.event_enrollments 
-                  SET rating = $1
-                  WHERE id_event = $2 AND id_user = $3 `;
+    let miQuery = `UPDATE public.event_enrollments SET rating = $1 WHERE id_event = $2 AND id_user = $3 `;
     try {
       const sql = miQuery;
       const values = [rating, id_event, id_user];
@@ -445,4 +448,25 @@ export default class ListEvents {
     }
     return returnEntity;
   };
+
+  getEnrollmentBy = async (id_user,  id_event) => {
+    
+    let returnCat = null;
+    const client = new Client(DBConfig);
+    await client.connect();
+    try {
+      const sql = `SELECT * FROM public.event_enrollments WHERE id_user = $1 AND id_event = $2`;
+      const values = [id_user, id_event];
+      const result = await client.query(sql, values);
+      await client.end();
+      if (result.rows.length){
+        returnCat = result.rows[0];
+      }
+      
+    } catch (error) {
+      console.log(error);
+      returnCat = null;
+    }
+    return returnCat;
+}
 }

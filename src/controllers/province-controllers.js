@@ -37,19 +37,19 @@ router.get('/:id', async (req, res) => {
     if (province != null){
         respuesta = res.status(200).json(province);
     } else {
-        respuesta = res.status(500).send(`Error interno.`);
+        respuesta = res.status(404).send(`No se encontro.`);
     }
     return respuesta;
 });
 
-router.get('/:id/location', async (req, res) => {
+router.get('/:id/locations', async (req, res) => {
     let respuesta;
     let id = req.params.id;
     const provinces = await svc.getLocProvByIdAsync(id)
     if (provinces != null){
         respuesta = res.status(200).json(provinces);
     } else {
-        respuesta = res.status(500).send(`Error interno.`);
+        respuesta = res.status(404).send(`No se encontro.`);
     }
     return respuesta;
 });
@@ -89,7 +89,6 @@ router.put('', async (req, res) => {
     }
 });
 
-
 router.delete('/:id', async (req, res) => {
     let respuesta;
     let id = req.params.id;
@@ -107,5 +106,7 @@ router.delete('/:id', async (req, res) => {
         return res.status(500).send('Error interno del servidor.');
     }
 });
+
+/// patch controller
 
 export default router;

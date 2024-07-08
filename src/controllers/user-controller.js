@@ -26,12 +26,23 @@ router.post('/login', async (req, res) => {
         }
         respuesta = res.status(200).json(ok);
     } else {
-        let NoOk = {
-            success : false,
-            mensagge : "Usuario o clave invalida",
-            token : null
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if(!emailRegex.test(user.username) || user.password.length < 3){
+            let NoOk = {
+                success : false,
+                mensagge : "Campos invalidos",
+                token : null
+            }
+            respuesta = res.status(400).send(NoOk);
+            
+        }else{
+            let NoOk = {
+                success : false,
+                mensagge : "Usuario o clave invalida",
+                token : null
+            }
+            respuesta = res.status(401).send(NoOk);
         }
-        respuesta = res.status(401).send(NoOk);
     }
     return respuesta;
 });

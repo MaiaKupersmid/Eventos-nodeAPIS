@@ -11,6 +11,8 @@ class AutenticationMddleware {
                 req.id_user = original.id;
                 console.log(req.id_user)
                 next();
+            } else {
+                return res.status(401).send("Unauthorized");
             }
         } catch(error){
             console.log(error)

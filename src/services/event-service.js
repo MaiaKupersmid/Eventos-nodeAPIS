@@ -1,12 +1,6 @@
 import ListEvents from '../repositories/event-repository.js';
 
 export default class EventsService {
-    /*getAllAsync = async (limit, offset) => {
-        const repo = new ListEvents();
-        const returnArray = await repo.getAllAsync(limit, offset);
-        return returnArray;
-    }*/
-
     getByFilter = async (filters, limit, offset) => {
         const repo = new ListEvents();
         const user = await repo.getByFilter(filters, offset);
@@ -15,13 +9,13 @@ export default class EventsService {
 
     getByIdAsync = async (id) => {
         const repo = new ListEvents();
-        const returnArray = await repo.getByIdAsync(id);
-        return returnArray;
+        const returnEntity = await repo.getByIdAsync(id);
+        return returnEntity;
     }
 
-    createAsync = async (entity) => {
+    createAsync = async (entity, idUser) => {
         const repo = new ListEvents();
-        const returnArray = await repo.createAsync(entity);
+        const returnArray = await repo.createAsync(entity, idUser);
         return returnArray;
     }
 
@@ -64,6 +58,12 @@ export default class EventsService {
     patchRatingAsync = async (rating, id_event, id_user) => {
         const repo = new ListEvents();
         const eve = await repo.patchRatingAsync(rating, id_event, id_user);
+        return eve;
+    }
+
+    getEnrollmentBy= async (id_user,  id_event) => {
+        const repo = new ListEvents();
+        const eve = await repo.getEnrollmentBy(id_user,  id_event);
         return eve;
     }
 }
